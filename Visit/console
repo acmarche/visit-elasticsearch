@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\ErrorHandler\Debug;
+use Visit\Elasticsearch\Command\ElasticIndexerCommand;
+use Visit\Elasticsearch\Command\ElasticSearcherCommand;
+use Visit\Elasticsearch\Command\ElasticServerCommand;
+
+if ( ! in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
+    echo 'Warning: The console should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
+}
+
+define('WP_USE_THEMES', false);
+$_SERVER['HTTP_HOST'] = 'visitmarche.be';
+
+require_once(__DIR__.'/wp-load.php');
+require_once 'vendor/autoload.php';
+
+set_time_limit(0);
+$console = new Application();
+
+$input = new ArgvInput();
+
+if (null !== $env = $input->getParameterOption(['--env', '-e'], null, true)) {
+    putenv('APP_ENV='.$_SERVER['APP_ENV'] = $_ENV['APP_ENV'] = $env);
+}
+
+if ($input->hasParameterOption('--no-debug', true)) {
+    putenv('APP_DEBUG='.$_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] = '0');
+}
+
+Debug::enable();
+
+$console->addCommands(
+    [
+        new ElasticServerCommand(),
+        new ElasticIndexerCommand(),
+        new ElasticSearcherCommand(),
+    ]
+);
+
+$console->run();
