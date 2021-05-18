@@ -11,11 +11,6 @@ use Visit\Elasticsearch\Command\ElasticServerCommand;
 if ( ! in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
     echo 'Warning: The console should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
 }
-
-define('WP_USE_THEMES', false);
-$_SERVER['HTTP_HOST'] = 'visitmarche.be';
-
-require_once(__DIR__.'/wp-load.php');
 require_once 'vendor/autoload.php';
 
 set_time_limit(0);
