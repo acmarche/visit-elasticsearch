@@ -7,11 +7,9 @@ $query = 'Ferme';
 
 $searcher = new Searcher();
 $result = $searcher->search2($query);
-echo ("Found: ".$result->count());
-echo ('-------------------');
+$hits = [];
 foreach ($result->getResults() as $result) {
     $hit = $result->getHit();
-    $source = $hit['_source'];
-    echo $source['name'];
+    $hits[] = $hit['_source'];
 }
-
+echo json_encode($hits);
