@@ -3,8 +3,11 @@ require_once 'vendor/autoload.php';
 
 use Visit\Elasticsearch\Searcher;
 
-$query = 'Ferme';
-
+$query = $_GET['keyword'] ?? null;
+if (!$query) {
+    return        [];
+}
+$query = urldecode($query);
 $searcher = new Searcher();
 $result = $searcher->search2($query);
 $hits = [];
