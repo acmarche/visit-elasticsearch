@@ -43,7 +43,7 @@ trait ElasticClientTrait
     {
         $dotenv = new Dotenv();
         try {
-            $dotenv->load(__DIR__.'/../.env');
+            $dotenv->load(__DIR__.'/../../.env');
         } catch (\Exception $exception) {
             echo "error load env: ".$exception->getMessage();
         }
