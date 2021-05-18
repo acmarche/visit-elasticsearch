@@ -9,7 +9,7 @@ if (!$query) {
 }
 $query = urldecode($query);
 $searcher = new Searcher();
-$result = $searcher->search2($query);
+$result = $searcher->search($query);
 $hits = [];
 foreach ($result->getResults() as $result) {
     $hit = $result->getHit();
