@@ -23,7 +23,7 @@ trait ElasticClientTrait
         self::loadEnv();
         $username = $_ENV['ELASTIC_USER'];
         $password = $_ENV['ELASTIC_PASSWORD'];
-        $ds= $username.':'.$password.'@'.$host;
+        $ds = $username.':'.$password.'@'.$host;
         $this->client = new Client(
             [
                 'host' => $ds,
@@ -43,9 +43,9 @@ trait ElasticClientTrait
     {
         $dotenv = new Dotenv();
         try {
-            $dotenv->load(ABSPATH . '.env');
+            $dotenv->load(__DIR__.'/../.env');
         } catch (\Exception $exception) {
-            echo "error load env: " . $exception->getMessage();
+            echo "error load env: ".$exception->getMessage();
         }
     }
 }
