@@ -33,6 +33,7 @@ class RemoteData
         $document->tags = $post->tags;
         $document->date = $post->date;
         $document->url = $post->url;
+        $document->image = $post->image;
 
         return $document;
     }

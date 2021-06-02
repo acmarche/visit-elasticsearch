@@ -33,5 +33,8 @@ class DocumentElastic
      * @var string
      */
     public $url;
-
+    /**
+     * @var string
+     */
+    public $image;
 }
