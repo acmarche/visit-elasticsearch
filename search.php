@@ -5,7 +5,7 @@ use Visit\Elasticsearch\Searcher;
 
 $query = $_GET['keyword'] ?? null;
 if (!$query) {
-    return        [];
+    return [];
 }
 $query = urldecode($query);
 $searcher = new Searcher();
