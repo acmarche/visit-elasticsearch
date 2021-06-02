@@ -20,7 +20,7 @@ class ElasticIndexer
     /**
      * @var RemoteData
      */
-    private $elasticData;
+    private $remoteData;
     /**
      * @var SymfonyStyle|null
      */
@@ -30,13 +30,13 @@ class ElasticIndexer
     {
         $this->connect();
         $this->serializer = (new Serializer())->create();
-        $this->elasticData = new RemoteData();
+        $this->remoteData = new RemoteData();
         $this->outPut = $outPut;
     }
 
     public function getAll()
     {
-        return $this->elasticData->getAllData();
+        return $this->remoteData->getAllData();
     }
 
     public function treatment()
@@ -49,7 +49,7 @@ class ElasticIndexer
         }
 
         foreach ($allData->posts as $data) {
-            $documentElastic = $this->elasticData->createDocumentElasticFromX($data);
+            $documentElastic = $this->remoteData->createDocumentElasticFromX($data);
             if ($this->outPut) {
                 $this->outPut->writeln($documentElastic->name);
             }
@@ -57,7 +57,7 @@ class ElasticIndexer
         }
 
         foreach ($allData->categories as $data) {
-            $documentElastic = $this->elasticData->createDocumentElasticFromX($data);
+            $documentElastic = $this->remoteData->createDocumentElasticFromX($data);
             if ($this->outPut) {
                 $this->outPut->writeln($documentElastic->name);
             }
@@ -65,7 +65,7 @@ class ElasticIndexer
         }
 
         foreach ($allData->offres as $data) {
-            $documentElastic = $this->elasticData->createDocumentElasticFromX($data);
+            $documentElastic = $this->remoteData->createDocumentElasticFromX($data);
             if ($this->outPut) {
                 $this->outPut->writeln($documentElastic->name);
             }
