@@ -5,7 +5,6 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\ErrorHandler\Debug;
 use Visit\Elasticsearch\Command\ElasticIndexerCommand;
-use Visit\Elasticsearch\Command\ElasticSearcherCommand;
 use Visit\Elasticsearch\Command\ElasticServerCommand;
 
 if ( ! in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
@@ -32,7 +31,6 @@ $console->addCommands(
     [
         new ElasticServerCommand(),
         new ElasticIndexerCommand(),
-        new ElasticSearcherCommand(),
     ]
 );
 
