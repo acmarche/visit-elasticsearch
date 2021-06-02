@@ -23,17 +23,17 @@ class RemoteData
         return $t;
     }
 
-    public function createDocumentElasticFromX(\stdClass $post): DocumentElastic
+    public function createDocumentElasticFromX(\stdClass $object): DocumentElastic
     {
         $document = new DocumentElastic();
-        $document->id = $post->id;
-        $document->name = $post->name;
-        $document->excerpt = $post->excerpt;
-        $document->content = $post->content;
-        $document->tags = $post->tags;
-        $document->date = $post->date;
-        $document->url = $post->url;
-        $document->image = $post->image;
+        $document->id = $object->id;
+        $document->name = $object->name;
+        $document->excerpt = $object->excerpt;
+        $document->content = $object->content;
+        $document->tags = $object->tags;
+        $document->date = $object->date;
+        $document->url = $object->url;
+        $document->image = $object->image;
 
         return $document;
     }
