@@ -6,7 +6,7 @@ use Elastica\Document;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Serializer\SerializerInterface;
 use Visit\Elasticsearch\Data\DocumentElastic;
-use Visit\Elasticsearch\Data\ElasticData;
+use Visit\Elasticsearch\Data\RemoteData;
 use Visit\Elasticsearch\Data\Serializer;
 
 class ElasticIndexer
@@ -18,7 +18,7 @@ class ElasticIndexer
      */
     private $serializer;
     /**
-     * @var ElasticData
+     * @var RemoteData
      */
     private $elasticData;
     /**
@@ -30,7 +30,7 @@ class ElasticIndexer
     {
         $this->connect();
         $this->serializer = (new Serializer())->create();
-        $this->elasticData = new ElasticData();
+        $this->elasticData = new RemoteData();
         $this->outPut = $outPut;
     }
 
