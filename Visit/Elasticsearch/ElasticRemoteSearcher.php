@@ -10,7 +10,7 @@ use Elastica\ResultSet;
  * Class Searcher
  *
  */
-class Searcher
+class ElasticRemoteSearcher
 {
     use ElasticClientTrait;
 

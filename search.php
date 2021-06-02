@@ -1,14 +1,15 @@
 <?php
 require_once 'vendor/autoload.php';
 
-use Visit\Elasticsearch\Searcher;
+use Visit\Elasticsearch\ElasticRemoteSearcher;
 
 $query = $_GET['keyword'] ?? null;
+
 if (!$query) {
     return [];
 }
 $query = urldecode($query);
-$searcher = new Searcher();
+$searcher = new ElasticRemoteSearcher();
 $result = $searcher->search($query);
 $hits = [];
 foreach ($result->getResults() as $result) {
