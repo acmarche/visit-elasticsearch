@@ -3,6 +3,7 @@
 namespace Visit\Elasticsearch;
 
 use Elastica\Document;
+use Elastica\Response;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Serializer\SerializerInterface;
 use Visit\Elasticsearch\Data\DocumentElastic;
@@ -80,7 +81,8 @@ class ElasticIndexer
         $content = $this->serializer->serialize($documentElastic, 'json');
         $id = $this->createIdPost($documentElastic->id);
         $doc = new Document($id, $content);
-        $this->index->addDocument($doc);
+        $response = $this->index->addDocument($doc);
+        $this->handleResponse($response);
     }
 
     private function addCategory(DocumentElastic $documentElastic)
@@ -88,7 +90,8 @@ class ElasticIndexer
         $content = $this->serializer->serialize($documentElastic, 'json');
         $id = 'category_'.$documentElastic->id;
         $doc = new Document($id, $content);
-        $this->index->addDocument($doc);
+        $response = $this->index->addDocument($doc);
+        $this->handleResponse($response);
     }
 
     private function addOffre(DocumentElastic $documentElastic)
@@ -96,7 +99,17 @@ class ElasticIndexer
         $content = $this->serializer->serialize($documentElastic, 'json');
         $id = 'offre_'.$documentElastic->id;
         $doc = new Document($id, $content);
-        $this->index->addDocument($doc);
+        $response = $this->index->addDocument($doc);
+        $this->handleResponse($response);
+    }
+
+    private function handleResponse(Response $response)
+    {
+        if ($response->hasError()) {
+            if ($this->outPut) {
+                $this->outPut->error($response->getErrorMessage());
+            }
+        }
     }
 
     public function deletePost(int $postId)
