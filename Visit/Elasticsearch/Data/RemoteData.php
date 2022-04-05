@@ -4,10 +4,7 @@ namespace Visit\Elasticsearch\Data;
 
 class RemoteData
 {
-    /**
-     * @var string
-     */
-    private $url;
+    private string $url;
 
     public function __construct()
     {

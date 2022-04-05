@@ -8,15 +8,8 @@ use Symfony\Component\Dotenv\Dotenv;
 
 trait ElasticClientTrait
 {
-    /**
-     * @var Client
-     */
-    public $client;
-
-    /**
-     * @var Index
-     */
-    private $index;
+    public Client $client;
+    private Index $index;
 
     public function connect(string $host = 'localhost', int $port = 9200)
     {

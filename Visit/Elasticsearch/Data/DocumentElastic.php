@@ -8,33 +8,33 @@ class DocumentElastic
     /**
      * @var string
      */
-    public $id;
+    public ?string $id;
     /**
      * @var string
      */
-    public $name;
+    public ?string $name;
     /**
      * @var string
      */
-    public $excerpt;
+    public ?string $excerpt;
     /**
      * @var string
      */
-    public $content;
+    public ?string $content;
     /**
      * @var array
      */
-    public $tags;
+    public array $tags = [];
     /**
      * @var string
      */
-    public $date;
+    public ?string $date;
     /**
      * @var string
      */
-    public $url;
+    public ?string $url;
     /**
      * @var string
      */
-    public $image;
+    public ?string $image;
 }

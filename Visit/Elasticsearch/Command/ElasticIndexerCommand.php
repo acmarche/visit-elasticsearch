@@ -14,10 +14,7 @@ class ElasticIndexerCommand extends Command
 {
     protected static $defaultName = 'elastic:indexer';
 
-    /**
-     * @var SymfonyStyle
-     */
-    private $io;
+    private SymfonyStyle $io;
 
     protected function configure()
     {

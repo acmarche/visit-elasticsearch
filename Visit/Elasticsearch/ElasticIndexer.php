@@ -13,19 +13,9 @@ use Visit\Elasticsearch\Data\Serializer;
 class ElasticIndexer
 {
     use ElasticClientTrait;
-
-    /**
-     * @var SerializerInterface
-     */
-    private $serializer;
-    /**
-     * @var RemoteData
-     */
-    private $remoteData;
-    /**
-     * @var SymfonyStyle|null
-     */
-    private $outPut;
+    private SerializerInterface $serializer;
+    private RemoteData $remoteData;
+    private SymfonyStyle|null $outPut;
 
     public function __construct(?SymfonyStyle $outPut = null)
     {
@@ -35,12 +25,12 @@ class ElasticIndexer
         $this->outPut = $outPut;
     }
 
-    public function getAll()
+    public function getAll(): \stdClass
     {
         return $this->remoteData->getAllData();
     }
 
-    public function treatment()
+    public function treatment(): array
     {
         $allData = $this->getAll();
         if (isset($allData->error)) {
