@@ -3,23 +3,24 @@
 
 namespace Visit\Elasticsearch\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Visit\Elasticsearch\ElasticIndexer;
-
+#[AsCommand(
+    name: 'elastic:indexer',
+    description: 'Mise à jour des données [all, posts, categories, offres]',
+)]
 class ElasticIndexerCommand extends Command
 {
-    protected static $defaultName = 'elastic:indexer';
-
     private SymfonyStyle $io;
 
     protected function configure()
     {
         $this
-            ->setDescription('Mise à jour des données [all, posts, categories, offres]')
             ->addArgument('action', InputArgument::REQUIRED, 'all, posts, categories, bottin');
     }
 
